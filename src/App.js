@@ -3,9 +3,8 @@ import './App.css';
 
 function App() {
   return (
-    <div>
-     hello
-     <Login />
+    <div style={{marginTop:64}}>
+     <Login/>
     </div>
   );
 }

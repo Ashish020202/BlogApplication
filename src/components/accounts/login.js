@@ -1,6 +1,7 @@
 import React from 'react'
 import {Box, Button, TextField,styled,Typography} from '@mui/material'
-import { display, textAlign } from '@mui/system'
+// import { display, textAlign } from '@mui/system'
+import { useState } from 'react'
 
 const Component = styled(Box)`
  width:400px;
@@ -20,31 +21,67 @@ const Component = styled(Box)`
        display:flex;
        flex:1;
        flex-direction:column;
-       &>div, & > button{
-        margin-top:20px
+       &>div, & > button, &>p{
+        margin-top:20px;
        }`
 
-  const Signup=styled(Button)`
-  Box-shadow:5px 4px;
-  `
+   const LoginButton = styled(Button) `
+   text-transform: none;
+   background: #FB641B;
+   color: #fff;
+   height: 48px;
+   border-radius: 2px:
+
+   `;  
+
+  const SignupButton=styled(Button)`
+  Box-shadow:0 2px 4px 0 rgb(0 0 0/20%);
+  background:#fff;
+  color: #2874f0;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0/ 20%);
+  `;
+
+  const Text = styled(Typography)`
+  color: #878787
+  font-size: 16px`;
+  
        
  
-const login = () => {
+const Login = () => {
 
   const imageURL = 'https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png';
 
+  const [account,toogleAccount] = useState('Login');
+  
+  const toogleSignup = () => {
+    account=== 'signup' ? toogleAccount('Login') :toogleAccount('signup');
+  }
   return (
     <Component>
     <Box>
     <Image src={imageURL} alt="login" />
+     
+     {  
+      account ==='Login'?
+
      <Wrapper>
      <TextField variant='standard' label="Enter username"/>
      <TextField variant='standard' label="Enter Password"/>
-     <Button variant='contained'>Login</Button>
-     <Typography style={{textAlign: 'center'}}>OR</Typography>
-     <Button>Create an Account</Button>
+     <LoginButton variant='contained'>Login</LoginButton>
+     <Text style={{textAlign: 'center',marginTop:'10px'}}>OR</Text>
+     <SignupButton onClick={()=>toogleSignup()}>Create an Account</SignupButton>
      </Wrapper>
-  
+   :
+     <Wrapper>
+     <TextField variant='standard' label="Enter Name"/>
+     <TextField variant='standard' label="Enter username"/>
+     <TextField variant='standard' label="Enter Password"/>
+     <SignupButton>Signup</SignupButton>
+     <Text style={{textAlign: 'center',marginTop:'10px'}}>OR</Text>
+     <LoginButton variant='contained' onClick={()=>toogleSignup()}>Already have an account</LoginButton>
+     </Wrapper>
+     }
     </Box>
     
      
@@ -52,4 +89,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login
